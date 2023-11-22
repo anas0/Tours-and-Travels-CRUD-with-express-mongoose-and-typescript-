@@ -1,0 +1,36 @@
+Entities:
+User
+Tour
+Locations
+Review
+Booking
+
+Collections:
+User
+{
+    name: 'Bismi',
+    email: 'bismi@gmail.com',
+    review: [ -> Embedding
+        {
+            review: 'good',
+            rating: 4.5
+        }
+    ],
+    booking:[
+        {
+            tourName: 'Dhaka to Cox's Bazar'
+        }
+    ]
+}
+
+
+Tour
+{
+    locations:[
+        {
+            area: 'ST. Martin'
+        }
+    ]
+}
+
+Referencing:
