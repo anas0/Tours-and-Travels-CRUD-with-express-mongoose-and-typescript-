@@ -1,119 +1,114 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
-import { Request, Response } from "express";
-import { tourServices } from "../services/tour.service";
-
-const createTour = async (req: Request, res: Response) => {
+"use strict";
+var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.tourController = void 0;
+const tour_service_1 = require("../services/tour.service");
+const createTour = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const tourData = req.body;
-        
-        const result = await tourServices.createTour(tourData)
-
+        const result = yield tour_service_1.tourServices.createTour(tourData);
         res.status(201).json({
             status: "success",
             message: "Tour created successfully",
             data: result
-        })
-
-    } catch (error: any) {
+        });
+    }
+    catch (error) {
         console.log(error);
         res.status(500).json({
             status: "fail",
             message: error.message || "Something went wrong"
-        })
+        });
     }
-}
-
-const getAllTours = async (req: Request, res: Response) => {
+});
+const getAllTours = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        const result = await tourServices.getAllTours()
-
+        const result = yield tour_service_1.tourServices.getAllTours();
         res.status(200).json({
             status: "success",
             message: "Tour fetched successfully",
             data: result
-        })
-
-    } catch (error: any) {
+        });
+    }
+    catch (error) {
         console.log(error);
         res.status(500).json({
             status: "fail",
             message: error.message || "Something went wrong"
-        })
+        });
     }
-}
-
-const getSingleTour = async (req: Request, res: Response) => {
+});
+const getSingleTour = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const id = req.params.id;
-        const result = await tourServices.getSingleTour(id);
-
+        const result = yield tour_service_1.tourServices.getSingleTour(id);
         res.status(200).json({
             status: "success",
             message: "Single tour fetched successfully",
             data: result
-        })
-
-    } catch (error: any) {
+        });
+    }
+    catch (error) {
         console.log(error);
         res.status(500).json({
             status: "fail",
             message: error.message || "Something went wrong"
-        })
+        });
     }
-}
-
-const updateTour = async (req: Request, res: Response) => {
+});
+const updateTour = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const tourData = req.body;
         const id = req.params.id;
-
-        const result = await tourServices.updateTour(id, tourData);
-
+        const result = yield tour_service_1.tourServices.updateTour(id, tourData);
         res.status(200).json({
             status: "success",
             message: "Tour updated successfully",
             data: result
-        })
-
-    } catch (error: any) {
+        });
+    }
+    catch (error) {
         console.log(error);
         res.status(500).json({
             status: "fail",
             message: error.message || "Something went wrong"
-        })
+        });
     }
-}
-
-const deleteTour = async (req: Request, res: Response) => {
+});
+const deleteTour = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const id = req.params.id;
-        await tourServices.deleteTour(id);
-
+        yield tour_service_1.tourServices.deleteTour(id);
         res.status(200).json({
             status: "success",
             message: "Tour deleted successfully"
-        })
-
-    } catch (error: any) {
+        });
+    }
+    catch (error) {
         console.log(error);
         res.status(500).json({
             status: "fail",
             message: error.message || "Something went wrong"
-        })
+        });
     }
-}
-
+});
 // const getNextSchedule =async (req: Request, res: Response) => {
 //     try {
 //         const id = req.params.id;
 //         const result = await tourServices.getNextSchedule(id);
-
 //         res.status(200).json({
 //             status: "success",
 //             message: "Nearest schedule fetch successfully",
 //             data: result
 //         })
-
 //     } catch (error: any) {
 //         console.log(error);
 //         res.status(500).json({
@@ -122,13 +117,11 @@ const deleteTour = async (req: Request, res: Response) => {
 //         })
 //     }
 // }
-
-
-export const tourController = {
+exports.tourController = {
     createTour,
     getAllTours,
     getSingleTour,
     updateTour,
     deleteTour,
     // getNextSchedule
-}
+};
